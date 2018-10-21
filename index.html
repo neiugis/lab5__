@@ -251,7 +251,7 @@
                     <pre><code class="language-html">&lt;div id=&quot;chart&quot;&gt;&lt;/div&gt;</code></pre></li>
                     <li>To make the charts using the attribute data, we will define a function. I will call the function <code>makeChart</code>. You may use a different name. Place the function BEFORE the <code>highlightFeature()</code> function. Please read the comment lines for explanation.
                     <pre><code class="language-javascript">function makeChart(props) {
-// props 
+// props is just a variable, which will be replaced with the layer's properties when using the function
     c3.generate({   
     
         bindto: '#chart',  // id of the chart div
@@ -296,7 +296,9 @@
                         <li>For more options of customizing charts, refer to the <a href="https://c3js.org/reference.html" target="_blank">C3 Reference page</a>.</li></ul></li> 
                     
                     <li>INSIDE the <code>highlightFeature()</code> function, add the following line to make the chart as part of the mouseover event.
-                    <pre><code class="language-javascript">makeChart(layer.feature.properties);</code></pre></li>
+                    <pre><code class="language-javascript">makeChart(layer.feature.properties);</code></pre>
+                    The <code>layer.feature.properties</code> will replace the <code>props</code> for defining the function, which enable access to the actual attributes/properties of the geojson file.</li>
+                    
                     <li>The chart shows up below the map as a section when you hover on a borough. Hover on each feature to see an example of the map created so far (<a href="" target="_blank">sample code</a>)</li>
                      <iframe src="map/chart.html" width=95% height=710 frameborder=0></iframe></ul>
                                       
@@ -309,20 +311,25 @@
                     <li>To get the chart element, place the following line BEFORE <code>L.geoJson</code>                      
                         <pre><code class="language-javascript">var tooltip = document.getElementById("chart");</code></pre>
                         Note the <code>"chart"</code> here refers to the <code>div</code> element with id "chart".<br><code>document.getElementById</code> is the JavaScript function for finding an html element by id.</li>
-                    <li>Next, add the <code>bindTooltip(tooltip)</code> to the <code>L.geoJson</code> function as we did in Lab 3. Note the <code>tooltip</code> is the variable name we used for holding the chart element.</li>
-                    <iframe src="map/map5.html" width=95% height=520 frameborder=0></iframe></ul>
+                    <li>Next, add the <code>bindTooltip(tooltip)</code> to the <code>L.geoJson</code> function as we did in Lab 3. Note the <code>tooltip</code> is the variable name we used for holding the chart element:
+                     <pre><code class="language-javascript">geojson = L.geoJson(data, {
+            style:style,
+            onEachFeature: onEachFeature
+        }).bindTooltip(tooltip).addTo(map);</code></pre></li>
+                    <li>Below is the final map with charts as tooltips (<a href="" target="_blank">sample code</a>)</li>
+                    <iframe id="final" src="map/map5.html" width=95% height=520 frameborder=0></iframe></ul>
                     
                     
                     
                   <p><a id="deliverable" title="Deliverables" class="toc-item"></a></p>
                   <h3><i class="fa fa-paint-brush"></i> Deliverables</h3>
-                    <ul><li>Create a layer control with AT LEAST <mark>TWO basemaps</mark> and <mark>TWO overlay layers</mark>.  
-                        <ul>
-                            <li>Feel free to reuse your lab 3 data as one of the overlay layers.</li>
-                            
-                            </ul></li>
+                    <p>For this lab, there are two sample datasets you may choose ONE for making your final map: <a href="" target="_blank">Chicago ethnic group data at Census tract level</a> and <a href="" target="_blank">U.S. age groups by state</a>.</p>
+                    <ul><li>  pie chart
+                        </li>
+                        <li>  bar chart
+                        </li>
                         <li>Your final map will be graded based on its <b>overall accuracy (should meet all the requirements above)</b> and <b>cartographic layout/design</b>.</li>
-                        <li>Host your web page via GitHub (Make sure to rename the html file as <code>index.html</code> and upload any associated data files to the repository!!!) and submit the url through <a href="https://neiu.desire2learn.com/d2l/lms/dropbox/admin/mark/folder_submissions_users.d2l?db=74997&ou=2924591" target="_blank">D2L</a>. </li><br>
+                        <li>Host your two maps separately via GitHub (Make sure to rename the html file as <code>index.html</code> and upload any associated data files to the repository!!!) and submit the two urls through <a href="" target="_blank">D2L</a>. </li><br>
                         
                     </ul>
 
