@@ -55,7 +55,8 @@
 
                   <p><a id="overview" title="Overview" class="toc-item"></a></p>
                   <h3><i class="fa fa-paint-brush"></i> Overview</h3>
-                  <p><i class="fa fa-spinner fa-spin"></i>  We have introduced the steps of making an interactive choropleth map in Lab 3.  There are many different ways and ideas to add interactions to web maps. In this exercise, we will explore the combination of charts and maps to display charts as tooltips (you can scroll down the bottom to see <a href="#final"><b>an example of the final product</b></a>)</p>
+                  <p><i class="fa fa-spinner fa-spin"></i>  In Lab 3, we have introduced the steps of making an interactive choropleth map in Lab 3.  There are many different ways and ideas to add interactions to web maps. In this exercise, we will explore the combination of charts and maps to display charts as tooltips (you can scroll down the bottom to see <a href="#final"><b>an example of the final product</b></a>)</p>
+                    <p><i class="fa fa-spinner fa-spin"></i>  For this week's review assignment (found on D2L), you will make stand-alone charts using the <a href="https://c3js.org/" target="_blank">C3 library</a>. For binding the charts with maps as tooltips, we use the same c3 functions and specifications. However, the procedures are slightly different that you will learn through this lab. </p>
                     <p><i class="fa fa-spinner fa-spin"></i>  Please read the instructions carefully (including the explanations of each step) and complete the assignment in the <a href="#deliverable">Deliverables</a> section at the bottom. </p>
 
 
@@ -66,7 +67,7 @@
                      <p>First, let's spend some time to prepare the data to be used for this lab. Since we've done this in lab3, only general steps are provided below. If you forgot the details of some particular steps, please refer to the <a href="https://neiugis.github.io/lab3/" target="_blank">Lab 3 instructions</a>.</p>
                           <ul>
                             <li>Create a <b>new file folder</b> (e.g., lab5) for this lab.</li>
-                          <li style="font-weight:bold;color:red;">Getting Data: click <a href="https://drive.google.com/file/d/0BzvZaHCgmEmNZGxza2FzRFQ1Ym8/view?usp=sharing" target="_blank">here</a> to download the lab data. </li>
+                          <li ><span style="font-weight:bold;color:red;">Getting Data: click <a href="https://drive.google.com/file/d/0BzvZaHCgmEmNZGxza2FzRFQ1Ym8/view?usp=sharing" target="_blank">here</a> to download my sample data.</span> If you are confident, you may go ahead and get the <a href="#deliverable">assignment data</a>.</li>
                           <li>Extract the files to your desired directory.</li>
                           <li>Open <b>QGIS</b> and add the shapefile. Take a look at its attribute table, which contains the demographic data of the Greater London area at borough level. Please familiarize yourself with the field names:
                             <ul><li style="font-size:18px">Specifically, <b>Total</b> refers to total population in 2011. There are five fields containing population count for the different ethnic groups: <b>White</b>, <b>Black</b>, <b>Asian</b>, <b>Mixed</b>, <b>Other</b>. </li>
@@ -74,9 +75,9 @@
                                 <li><b>NAME</b> gives the name of each borough.</li>
                               <li>We will be mapping population density in graduated colors (choropleth map) and attach charts to each borough to show their ethnic composition.
                                 </li></ul></li>
-                          <li>Check the Map Unit in Project Properties and simplify the geometry using an appropriate tolerance value, within which the vertices will get eliminated.</li>
-                              <li>Decide the data break values (Layer Properties > Style). I will be using 5-class Natural Breaks in this case.</li>
-                          <li> Save the layer as a <b>GeoJson</b> file to your lab folder (Be sure to use <b>EPSG:4326 - WGS 84</b> as the projection). </li>
+                          <li>Check the <b>Map Unit</b> in Project Properties and <b>simplify geometry</b> using an appropriate tolerance value.</li>
+                              <li>Decide the <b>data break values</b> (Layer Properties > Style). I will be using 5-class Natural Breaks in this case.</li>
+                          <li> Save the layer as a <b>GeoJson</b> file (Be sure to use <b>EPSG:4326 - WGS 84</b> as the projection!!!). </li>
                           <li>Use <b>Atom</b> to open the GeoJSON file, place the following at the very beginning of the GeoJSON document (see image below):
                               <pre><code class="language-javascript">var data =</code></pre>
                            Note the <code>data</code> here is just a variable name. You may use other names as long as you refer to it with the same name later in the L.geoJson function.
@@ -91,7 +92,7 @@
                   <ul>
 
                           <li>Open your <b>code editor</b> and add the following lines. <br>
-                              Note we are NOT using the full mode for now as the chart will be first added below the map. <br>
+                              Note we are <b>NOT using the full mode for now</b> as the chart will be first added below the map. <br>
 <pre><code class="language-html">&lt;!DOCTYPE html&gt;
 &lt;html&gt;
     &lt;head&gt;
@@ -268,7 +269,7 @@
         },
 
         data: {
-            columns: [  // use the five 
+            columns: [  // use the attribute values as data for making the charts
                 ['White', props.White],
                 ['Black', props.Black],
                 ['Asian', props.Asian],
@@ -291,29 +292,30 @@
         }
     });
 }</code></pre>
-                    Note nothing will show up at this point, as we haven't actually used the function for making the charts.<br>
-                    The <code>c3.generate()</code> is the C3 function for making charts and we define detailed functions for making different types of charts and customize chart styles. 
+                    Note the charts will not show up at this point, as we haven't actually used the function for making the charts.<br>
+                    The <code>c3.generate()</code> is the C3 function for making charts and we define detailed functions for making different types of charts and customize chart styles. <br>
+                    <b>Although we may follow similar syntax/format when making different charts using C3, please DO check the examples and documentations before making a new type of chart.</b>
                     <ul>
-                        <li>For example of making other types of charts, refer to the <a href="https://c3js.org/examples.html" target="_blank">C3 Example page</a>.</li>
+                        <li>For example of making other types of charts, refer to the <a href="https://c3js.org/examples.html" target="_blank">C3 Examples page</a>.</li>
                         <li>For more options of customizing charts, refer to the <a href="https://c3js.org/reference.html" target="_blank">C3 Reference page</a>.</li></ul></li> 
                     
                     <li>INSIDE the <code>highlightFeature()</code> function, add the following line to make the chart as part of the mouseover event.
                     <pre><code class="language-javascript">makeChart(layer.feature.properties);</code></pre>
-                    The <code>layer.feature.properties</code> will replace the <code>props</code> for defining the function, which enable access to the actual attributes/properties of the geojson file.</li>
+                    The <code>layer.feature.properties</code> will replace the <code>props</code> variable for defining the function, which enables access to the actual attributes/properties of the geojson file.</li>
                     
-                    <li>The chart shows up below the map as a section when you hover on a borough. Hover on each feature to see an example of the map created so far (<a href="https://raw.githubusercontent.com/neiugis/lab5/gh-pages/map/chart.html" target="_blank">sample code</a>)</li>
+                    <li>The chart shows up below the map as a section when you hover on a borough. Hover on each feature to see an example so far (<a href="https://raw.githubusercontent.com/neiugis/lab5/gh-pages/map/chart.html" target="_blank">sample code</a>)</li>
                      <iframe src="map/chart.html" width=95% height=710 frameborder=0></iframe></ul>
                                       
                     
                     
                 <p><a id="tooltip" title="Add Charts as Tooltips" class="toc-item"></a></p>
                   <h3><i class="fa fa-paint-brush"></i> Add Charts as Tooltips</h3>   
-                    <p>We will take a few more steps to make the charts as popups/tooltips. The idea is to get the chart element and use it as the tooltip.</p>
+                    <p>Next, we will take a few more steps to make the charts as popups/tooltips. To do this, we will get the chart element and use it as the tooltip using the <code>bindTooltip</code> method of L.geoJson (introduced in Lab 3).</p>
                     <ul>
-                    <li>To get the chart element, place the following line BEFORE <code>L.geoJson</code>                      
+                    <li>To get the chart element, place the following line BEFORE <code>L.geoJson</code> so that we have the chart element to be bound as tooltips when adding the geojson layer.                       
                         <pre><code class="language-javascript">var tooltip = document.getElementById("chart");</code></pre>
-                        Note the <code>"chart"</code> here refers to the <code>div</code> element with id "chart".<br><code>document.getElementById</code> is the JavaScript function for finding an html element by id.</li>
-                    <li>Next, add the <code>bindTooltip(tooltip)</code> to the <code>L.geoJson</code> function as we did in Lab 3. Note the <code>tooltip</code> is the variable name we used for holding the chart element:
+                        Note the <code><span style="color: #690">"chart"</span></code> here refers to the <code>div</code> element with id "chart".<br><code>document.getElementById</code> is the JavaScript function for finding an html element by id.</li>
+                    <li>Next, add the <code>bindTooltip(tooltip)</code> to the <code>L.geoJson</code> function. Note the <code>tooltip</code> is the variable name we used for holding the chart element:
                      <pre><code class="language-javascript">geojson = L.geoJson(data, {
             style:style,
             onEachFeature: onEachFeature
@@ -325,7 +327,7 @@
                     
                   <p><a id="deliverable" title="Deliverables" class="toc-item"></a></p>
                   <h3><i class="fa fa-paint-brush"></i> Deliverables</h3>
-                    <p>For this lab, there are two sample datasets you may choose ONE for making your final map: <a href="https://drive.google.com/file/d/1jlZMJRFz2tIMnvK2MR9jBFCxuT6iMBKe/view?usp=sharing" target="_blank">Chicago ethnic group data at Census tract level</a> and <a href="https://drive.google.com/file/d/14NvdS6SYV4GhlUQe1omz6WRcH-vMXDG0/view?usp=sharing" target="_blank">U.S. age groups by state</a>.</p>
+                    <p>For this lab, there are <b>two datasets you may choose ONE</b> for making your final map: <a href="https://drive.google.com/file/d/1jlZMJRFz2tIMnvK2MR9jBFCxuT6iMBKe/view?usp=sharing" target="_blank">Chicago ethnic group data at Census tract level</a> and <a href="https://drive.google.com/file/d/14NvdS6SYV4GhlUQe1omz6WRcH-vMXDG0/view?usp=sharing" target="_blank">U.S. age groups by state</a>.</p>
                     <ul><li>  pie chart
                         </li>
                         <li>  bar chart
