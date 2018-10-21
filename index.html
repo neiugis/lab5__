@@ -304,7 +304,15 @@
                     
                 <p><a id="deliverable" title="Add Charts as Tooltips" class="toc-item"></a></p>
                   <h3><i class="fa fa-paint-brush"></i> Add Charts as Tooltips</h3>   
-                    <p>We will take a few more steps to make the charts as popups/tooltips.</p>
+                    <p>We will take a few more steps to make the charts as popups/tooltips. The idea is to get the chart element and use it as the tooltip.</p>
+                    <ul>
+                    <li>To get the chart element, place the following line BEFORE <code>L.geoJson</code>                      
+                        <pre><code class="language-javascript">var tooltip = document.getElementById("chart");</code></pre>
+                        Note the <code>"chart"</code> here refers to the <code>div</code> element with id "chart".<br><code>document.getElementById</code> is the JavaScript function for finding an html element by id.</li>
+                    <li>Next, add the <code>bindTooltip(tooltip)</code> to the <code>L.geoJson</code> function as we did in Lab 3. Note the <code>tooltip</code> is the variable name we used for holding the chart element.</li>
+                    <iframe src="map/map5.html" width=95% height=520 frameborder=0></iframe></ul>
+                    
+                    
                     
                   <p><a id="deliverable" title="Deliverables" class="toc-item"></a></p>
                   <h3><i class="fa fa-paint-brush"></i> Deliverables</h3>

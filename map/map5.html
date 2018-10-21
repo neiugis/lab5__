@@ -148,11 +148,13 @@
                     mouseout: resetHighlight,
                 });
             }
+            
+            var tooltip = document.getElementById("chart");
                        
             geojson = L.geoJson(data, {
                 style:style,
                 onEachFeature: onEachFeature
-            }).addTo(map);
+            }).bindTooltip(tooltip).addTo(map);
             
             var legend = L.control({position: 'bottomright'}); // Try the other three corners if you like.
 
