@@ -234,7 +234,9 @@
                       <iframe src="map/choropleth.html" width=95% height=570 frameborder=0></iframe>
           </ul>
                
-                  <p><a id="deliverable" title="Make the Charts" class="toc-item"></a></p>
+                    
+                    
+                  <p><a id="chart" title="Make the Charts" class="toc-item"></a></p>
                   <h3><i class="fa fa-paint-brush"></i> Make the Charts</h3>
                     <p>We use <a href="https://c3js.org/" target="_blank">C3</a> for making the charts. C3 is a D3-based reusable chart library, which contains ready-to-use functions for chart making.</p>
                 <ul>
@@ -299,12 +301,12 @@
                     <pre><code class="language-javascript">makeChart(layer.feature.properties);</code></pre>
                     The <code>layer.feature.properties</code> will replace the <code>props</code> for defining the function, which enable access to the actual attributes/properties of the geojson file.</li>
                     
-                    <li>The chart shows up below the map as a section when you hover on a borough. Hover on each feature to see an example of the map created so far (<a href="" target="_blank">sample code</a>)</li>
+                    <li>The chart shows up below the map as a section when you hover on a borough. Hover on each feature to see an example of the map created so far (<a href="https://raw.githubusercontent.com/neiugis/lab5/gh-pages/map/chart.html" target="_blank">sample code</a>)</li>
                      <iframe src="map/chart.html" width=95% height=710 frameborder=0></iframe></ul>
                                       
                     
                     
-                <p><a id="deliverable" title="Add Charts as Tooltips" class="toc-item"></a></p>
+                <p><a id="tooltip" title="Add Charts as Tooltips" class="toc-item"></a></p>
                   <h3><i class="fa fa-paint-brush"></i> Add Charts as Tooltips</h3>   
                     <p>We will take a few more steps to make the charts as popups/tooltips. The idea is to get the chart element and use it as the tooltip.</p>
                     <ul>
@@ -316,20 +318,20 @@
             style:style,
             onEachFeature: onEachFeature
         }).bindTooltip(tooltip).addTo(map);</code></pre></li>
-                    <li>Below is the final map with charts as tooltips (<a href="" target="_blank">sample code</a>)</li>
+                    <li>Below is the final map with charts as tooltips (<a href="https://raw.githubusercontent.com/neiugis/lab5/gh-pages/map/map5.html" target="_blank">sample code</a>)</li>
                     <iframe id="final" src="map/map5.html" width=95% height=520 frameborder=0></iframe></ul>
                     
                     
                     
                   <p><a id="deliverable" title="Deliverables" class="toc-item"></a></p>
                   <h3><i class="fa fa-paint-brush"></i> Deliverables</h3>
-                    <p>For this lab, there are two sample datasets you may choose ONE for making your final map: <a href="" target="_blank">Chicago ethnic group data at Census tract level</a> and <a href="" target="_blank">U.S. age groups by state</a>.</p>
+                    <p>For this lab, there are two sample datasets you may choose ONE for making your final map: <a href="https://drive.google.com/file/d/1jlZMJRFz2tIMnvK2MR9jBFCxuT6iMBKe/view?usp=sharing" target="_blank">Chicago ethnic group data at Census tract level</a> and <a href="https://drive.google.com/file/d/14NvdS6SYV4GhlUQe1omz6WRcH-vMXDG0/view?usp=sharing" target="_blank">U.S. age groups by state</a>.</p>
                     <ul><li>  pie chart
                         </li>
                         <li>  bar chart
                         </li>
                         <li>Your final map will be graded based on its <b>overall accuracy (should meet all the requirements above)</b> and <b>cartographic layout/design</b>.</li>
-                        <li>Host your two maps separately via GitHub (Make sure to rename the html file as <code>index.html</code> and upload any associated data files to the repository!!!) and submit the two urls through <a href="" target="_blank">D2L</a>. </li><br>
+                        <li>Host your two maps separately via GitHub (Make sure to rename the html file as <code>index.html</code> and upload any associated data files to the repository!!!) and submit the two urls through <a href="https://neiu.desire2learn.com/d2l/lms/dropbox/admin/mark/folder_submissions_users.d2l?db=74998&ou=2924591" target="_blank">D2L</a>. </li><br>
                         
                     </ul>
 
